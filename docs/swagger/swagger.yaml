@@ -1,0 +1,5714 @@
+definitions:
+  context.DefinitionCluster:
+    properties:
+      certificate-authority:
+        type: string
+      certificate-authority-data:
+        type: string
+      insecure-skip-tls-verify:
+        type: boolean
+      server:
+        type: string
+    type: object
+  context.DefinitionContext:
+    properties:
+      cluster:
+        type: string
+      namespace:
+        type: string
+      user:
+        type: string
+    type: object
+  context.DefinitionUser:
+    properties:
+      client-certificate:
+        type: string
+      client-certificate-data:
+        type: string
+      client-key:
+        type: string
+      client-key-data:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  context.KubeConfig:
+    properties:
+      apiVersion:
+        type: string
+      clusters:
+        items:
+          $ref: '#/definitions/context.NamedCluster'
+        type: array
+      contexts:
+        items:
+          $ref: '#/definitions/context.NamedContext'
+        type: array
+      current-context:
+        type: string
+      kind:
+        type: string
+      preferences:
+        type: object
+      users:
+        items:
+          $ref: '#/definitions/context.NamedUser'
+        type: array
+    type: object
+  context.NamedCluster:
+    properties:
+      cluster:
+        $ref: '#/definitions/context.DefinitionCluster'
+        type: object
+      name:
+        type: string
+    type: object
+  context.NamedContext:
+    properties:
+      context:
+        $ref: '#/definitions/context.DefinitionContext'
+        type: object
+      name:
+        type: string
+    type: object
+  context.NamedUser:
+    properties:
+      name:
+        type: string
+      user:
+        $ref: '#/definitions/context.DefinitionUser'
+        type: object
+    type: object
+  context.ParamClusterCertificateEmbedded:
+    properties:
+      certificateAuthorityData:
+        type: string
+      server:
+        type: string
+    type: object
+  context.ParamClusterCertificateFile:
+    properties:
+      certificateAuthority:
+        type: string
+      server:
+        type: string
+    type: object
+  context.ParamClusterInsecure:
+    properties:
+      server:
+        type: string
+    type: object
+  context.ParamContext:
+    properties:
+      cluster:
+        type: string
+      namespace:
+        type: string
+      user:
+        type: string
+    type: object
+  context.ParamCredentialsCertificateEmbedded:
+    properties:
+      clientCertificateData:
+        type: string
+      clientKeyData:
+        type: string
+    type: object
+  context.ParamCredentialsCertificateFile:
+    properties:
+      clientCertificate:
+        type: string
+      clientKey:
+        type: string
+    type: object
+  context.ParamCredentialsUserNamePassword:
+    properties:
+      password:
+        type: string
+      userName:
+        type: string
+    type: object
+  echo.HTTPError:
+    properties:
+      code:
+        type: integer
+      internal:
+        type: error
+      message:
+        type: object
+    type: object
+  report.ClusterStateReport:
+    properties:
+      configMaps:
+        items:
+          $ref: '#/definitions/report.ConfigMapReport'
+        type: array
+      deployments:
+        items:
+          $ref: '#/definitions/report.DeploymentReport'
+        type: array
+      namespaces:
+        items:
+          $ref: '#/definitions/report.NamespaceReport'
+        type: array
+      nodes:
+        items:
+          $ref: '#/definitions/report.NodeReport'
+        type: array
+      persistentVolumeClaims:
+        items:
+          $ref: '#/definitions/report.PersistentVolumeClaimReport'
+        type: array
+      persistentVolumes:
+        items:
+          $ref: '#/definitions/report.PersistentVolumeReport'
+        type: array
+      pods:
+        items:
+          $ref: '#/definitions/report.PodReport'
+        type: array
+      secrets:
+        items:
+          $ref: '#/definitions/report.SecretReport'
+        type: array
+      services:
+        items:
+          $ref: '#/definitions/report.ServiceReport'
+        type: array
+    type: object
+  report.ConfigMapReport:
+    properties:
+      data:
+        type: object
+      id:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+    type: object
+  report.ContainerReport:
+    properties:
+      id:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+      ports:
+        items:
+          $ref: '#/definitions/report.PodPortReport'
+        type: array
+      ready:
+        type: boolean
+    type: object
+  report.DeploymentReport:
+    properties:
+      id:
+        type: string
+      labels:
+        type: object
+      name:
+        type: string
+      namespace:
+        type: string
+      selector:
+        type: object
+      volumes:
+        items:
+          $ref: '#/definitions/report.VolumeReport'
+        type: array
+    type: object
+  report.NamespaceReport:
+    properties:
+      deploymentsIds:
+        type: string
+      id:
+        type: string
+      labels:
+        type: object
+      name:
+        type: string
+      namespace:
+        type: string
+      podIds:
+        type: string
+      serviceIds:
+        type: string
+    type: object
+  report.NodeReport:
+    properties:
+      allowedCPUCores:
+        type: integer
+      allowedRAM:
+        type: integer
+      condition:
+        type: string
+      id:
+        type: string
+      labels:
+        type: object
+      name:
+        type: string
+      namespace:
+        type: string
+      podIds:
+        type: string
+      usageCPUCores:
+        type: number
+      usageRAM:
+        type: integer
+    type: object
+  report.PersistentVolumeClaimReport:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+      volumeName:
+        type: string
+    type: object
+  report.PersistentVolumeReport:
+    properties:
+      capacity:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+      type:
+        type: string
+    type: object
+  report.PodPortReport:
+    properties:
+      containerPort:
+        type: integer
+      name:
+        type: string
+      protocol:
+        type: string
+    type: object
+  report.PodReport:
+    properties:
+      condition:
+        type: string
+      containers:
+        items:
+          $ref: '#/definitions/report.ContainerReport'
+        type: array
+      id:
+        type: string
+      ip:
+        type: string
+      labels:
+        type: object
+      name:
+        type: string
+      namespace:
+        type: string
+      usageCPUCores:
+        type: number
+      usageRAM:
+        type: integer
+      volumes:
+        items:
+          $ref: '#/definitions/report.VolumeReport'
+        type: array
+    type: object
+  report.SecretReport:
+    properties:
+      data:
+        type: object
+      id:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+    type: object
+  report.ServicePortReport:
+    properties:
+      internalPort:
+        type: integer
+      internalPortName:
+        type: string
+      nodePort:
+        type: integer
+      protocol:
+        type: string
+    type: object
+  report.ServiceReport:
+    properties:
+      clusterIP:
+        type: string
+      externalIP:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      labels:
+        type: object
+      name:
+        type: string
+      namespace:
+        type: string
+      podIds:
+        type: string
+      ports:
+        items:
+          $ref: '#/definitions/report.ServicePortReport'
+        type: array
+      selector:
+        type: object
+    type: object
+  report.VolumeReport:
+    properties:
+      name:
+        type: string
+      persistentVolumeClaimName:
+        type: string
+      type:
+        type: string
+    type: object
+  search.Parameter:
+    properties:
+      label:
+        type: string
+      labelValue:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+      objectTypes:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /api/v1/configuration/:
+    get:
+      description: get the configuration
+      operationId: get-configuration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.KubeConfig'
+            type: object
+      summary: Retrieve the configuration
+      tags:
+      - Configuration
+  /api/v1/configuration/clusters/:
+    get:
+      description: get the clusters
+      operationId: get-configuration-clusters
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/context.NamedCluster'
+            type: array
+      summary: Retrieve the clusters
+      tags:
+      - Configuration
+  /api/v1/configuration/clusters/{name}/certificate-embedded:
+    post:
+      consumes:
+      - application/json
+      description: Create a new cluster for which the TLS certificate is given as
+        embedded (raw text)
+      operationId: post-configuration-cluster-embedded
+      parameters:
+      - description: the name of the cluster in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the definition of the cluster
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamClusterCertificateEmbedded'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedCluster'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a new cluster with its certificates embedded
+      tags:
+      - Configuration
+    put:
+      consumes:
+      - application/json
+      description: Update an existing cluster for which the TLS certificate is given
+        embedded (raw text)
+      operationId: put-configuration-cluster-embedded
+      parameters:
+      - description: the name of the cluster in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the definition of the cluster
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamClusterCertificateEmbedded'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedCluster'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update an existing cluster with its certificate embedded
+      tags:
+      - Configuration
+  /api/v1/configuration/clusters/{name}/certificate-file:
+    post:
+      consumes:
+      - application/json
+      description: Create a new cluster for which the TLS certificate is given as
+        a local file
+      operationId: post-configuration-cluster-file
+      parameters:
+      - description: the name of the cluster in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the definition of the cluster
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamClusterCertificateFile'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedCluster'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a new cluster with its certificate given as a local file
+      tags:
+      - Configuration
+    put:
+      consumes:
+      - application/json
+      description: Update an existing cluster for which the TLS certificate is given
+        as a local file
+      operationId: put-configuration-cluster-file
+      parameters:
+      - description: the name of the cluster in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the definition of the cluster
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamClusterCertificateFile'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedCluster'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update an existing cluster with its certificate given as a local file
+      tags:
+      - Configuration
+  /api/v1/configuration/clusters/{name}/insecure:
+    post:
+      consumes:
+      - application/json
+      description: Create a new cluster for which the TLS certificate is not verified
+      operationId: post-configuration-cluster-insecure
+      parameters:
+      - description: the name of the cluster in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the definition of the cluster
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamClusterInsecure'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedCluster'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a new cluster
+      tags:
+      - Configuration
+    put:
+      consumes:
+      - application/json
+      description: Update an existing cluster for which the TLS certificate is not
+        verified
+      operationId: put-configuration-cluster-insecure
+      parameters:
+      - description: the name of the cluster in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the definition of the cluster
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamClusterInsecure'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedCluster'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update an existing cluster
+      tags:
+      - Configuration
+  /api/v1/configuration/contexts/:
+    get:
+      description: get the contexts
+      operationId: get-configuration-contexts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/context.NamedContext'
+            type: array
+      summary: Retrieve the contexts
+      tags:
+      - Configuration
+  /api/v1/configuration/contexts/{name}:
+    post:
+      consumes:
+      - application/json
+      description: 'Create a new context: user and cluster, with an optional namespace'
+      operationId: post-configuration-context
+      parameters:
+      - description: the name of the context in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the definition of the context
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamContext'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedContext'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a new context
+      tags:
+      - Configuration
+    put:
+      consumes:
+      - application/json
+      description: 'Update an existing cluster: user and cluster, with an optional
+        namespace'
+      operationId: put-configuration-context
+      parameters:
+      - description: the name of the context in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the definition of the context
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamContext'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedCluster'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update an existing context
+      tags:
+      - Configuration
+  /api/v1/configuration/users/:
+    get:
+      description: get the users
+      operationId: get-configuration-users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/context.NamedUser'
+            type: array
+      summary: Retrieve the users
+      tags:
+      - Configuration
+  /api/v1/configuration/users/{name}/certificate-embedded:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user by giving its name in the configuration and its
+        certificates embedded
+      operationId: post-configuration-user-embedded
+      parameters:
+      - description: the name of the user in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamCredentialsCertificateEmbedded'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedUser'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a new user with the certificates embedded
+      tags:
+      - Configuration
+    put:
+      consumes:
+      - application/json
+      description: Update an existing user by giving its name in the configuration
+        and its certificates embedded
+      operationId: put-configuration-user-embedded
+      parameters:
+      - description: the name of the user in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamCredentialsCertificateEmbedded'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedUser'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update an existing user with the certificates embedded
+      tags:
+      - Configuration
+  /api/v1/configuration/users/{name}/certificate-file:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user by giving its name in the configuration and its
+        certificates as local files
+      operationId: post-configuration-user-file
+      parameters:
+      - description: the name of the user in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamCredentialsCertificateFile'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedUser'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a new user with the certificates given as local files
+      tags:
+      - Configuration
+    put:
+      consumes:
+      - application/json
+      description: Update an existing user by giving its name in the configuration
+        and its certificates as local files
+      operationId: put-configuration-user-file
+      parameters:
+      - description: the name of the user in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamCredentialsCertificateFile'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedUser'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update an existing user with the certificates given as local files
+      tags:
+      - Configuration
+  /api/v1/configuration/users/{name}/username-password:
+    post:
+      consumes:
+      - application/json
+      description: |-
+        Create a new user by giving its name in the configuration and the username and the
+        password to connect to the server
+      operationId: post-configuration-user-username-password
+      parameters:
+      - description: the name of the user in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamCredentialsUserNamePassword'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedUser'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a new user
+      tags:
+      - Configuration
+    put:
+      consumes:
+      - application/json
+      description: |-
+        Update an existing user by giving its name in the configuration and the username and the
+        password to connect to the server
+      operationId: put-configuration-user-username-password
+      parameters:
+      - description: the name of the user in the configuration
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/context.ParamCredentialsUserNamePassword'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context.NamedUser'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update an existing user
+      tags:
+      - Configuration
+  /api/v1/events/:
+    get:
+      description: the websocket used for receiving the configuration and then return
+        the requested events. Each event is a full object when created / updated /
+        deleted
+      operationId: get-events-by-websocket
+      parameters:
+      - description: the name of the configuration
+        in: path
+        name: contextName
+        required: true
+        type: string
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Connect to a WebSocket for managing events (port 8081)
+      tags:
+      - Events
+  /api/v1/labels/{contextName}/{namespace}:
+    get:
+      description: Get all the labels and their values
+      operationId: get-labels
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/MapOfStrings'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all the labels and their values
+      tags:
+      - Labels
+  /api/v1/objects/{contextName}/ReplicationControllers/{namespace}:
+    get:
+      description: Get all ReplicationControllers
+      operationId: get-object-ReplicationControllers
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ReplicationController'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all ReplicationControllers
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a replicationController.
+      operationId: create-object-replicationController
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the replicationController
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ReplicationController'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a replicationController
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a replicationController.
+      operationId: update-object-replicationController
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the replicationController
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ReplicationController'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a replicationController
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/ReplicationControllers/{namespace}/{name}:
+    delete:
+      description: Delete a replicationController by name
+      operationId: delete-object-replicationController
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a replicationController
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a replicationController by name
+      operationId: get-object-replicationController
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ReplicationController'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a replicationController
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/clusterRoleBindings:
+    get:
+      description: Get all clusterRoleBindings
+      operationId: get-object-clusterRoleBindings
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ClusterRoleBinding'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all clusterRoleBindings
+      tags:
+      - ObjectsClusterLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a clusterRoleBinding.
+      operationId: create-object-clusterRoleBinding
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the clusterRoleBinding
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ClusterRoleBinding'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a clusterRoleBinding
+      tags:
+      - ObjectsClusterLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a clusterRoleBinding.
+      operationId: update-object-clusterRoleBinding
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the clusterRoleBinding
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ClusterRoleBinding'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a clusterRoleBinding
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/clusterRoleBindings/{name}:
+    delete:
+      description: Delete a clusterRoleBinding by name
+      operationId: delete-object-clusterRoleBinding
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a clusterRoleBinding
+      tags:
+      - ObjectsClusterLevel
+    get:
+      description: Get a clusterRoleBinding by name
+      operationId: get-object-clusterRoleBinding
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ClusterRoleBinding'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a clusterRoleBinding
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/clusterRoles:
+    get:
+      description: Get all clusterRoles
+      operationId: get-object-clusterRoles
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ClusterRole'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all clusterRoles
+      tags:
+      - ObjectsClusterLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a clusterRole.
+      operationId: create-object-clusterRole
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the clusterRole
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ClusterRole'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a clusterRole
+      tags:
+      - ObjectsClusterLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a clusterRole.
+      operationId: update-object-clusterRole
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the clusterRole
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ClusterRole'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a clusterRole
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/clusterRoles/{name}:
+    delete:
+      description: Delete a clusterRole by name
+      operationId: delete-object-clusterRole
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a clusterRole
+      tags:
+      - ObjectsClusterLevel
+    get:
+      description: Get a clusterRole by name
+      operationId: get-object-clusterRole
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ClusterRole'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a clusterRole
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/configMaps/{namespace}:
+    get:
+      description: Get all configMaps
+      operationId: get-object-configMaps
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ConfigMap'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all configMaps
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a configMap.
+      operationId: create-object-configMap
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the configMap
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ConfigMap'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a configMap
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a configMap.
+      operationId: update-object-configMap
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the configMap
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ConfigMap'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a configMap
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/configMaps/{namespace}/{name}:
+    delete:
+      description: Delete a configMap by name
+      operationId: delete-object-configMap
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a configMap
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a configMap by name
+      operationId: get-object-configMap
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ConfigMap'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a configMap
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/cronJobs/{namespace}:
+    get:
+      description: Get all cronJobs
+      operationId: get-object-cronJobs
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/CronJob'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all cronJobs
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a cronJob.
+      operationId: create-object-cronJob
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the cronJob
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/CronJob'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a cronJob
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a cronJob.
+      operationId: update-object-cronJob
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the cronJob
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/CronJob'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a cronJob
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/cronJobs/{namespace}/{name}:
+    delete:
+      description: Delete a cronJob by name
+      operationId: delete-object-cronJob
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a cronJob
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a cronJob by name
+      operationId: get-object-cronJob
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/CronJob'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a cronJob
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/daemonSets/{namespace}:
+    get:
+      description: Get all daemonSets
+      operationId: get-object-daemonSets
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/DaemonSet'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all daemonSets
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a daemonSet.
+      operationId: create-object-daemonSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the daemonSet
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/DaemonSet'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a daemonSet
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a daemonSet.
+      operationId: update-object-daemonSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the daemonSet
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/DaemonSet'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a daemonSet
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/daemonSets/{namespace}/{name}:
+    delete:
+      description: Delete a daemonSet by name
+      operationId: delete-object-daemonSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a daemonSet
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a daemonSet by name
+      operationId: get-object-daemonSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/DaemonSet'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a daemonSet
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/deployments/{namespace}:
+    get:
+      description: Get all deployments
+      operationId: get-object-deployments
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Deployment'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all deployments
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a deployment.
+      operationId: create-object-deployment
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the deployment
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Deployment'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a deployment
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a deployment.
+      operationId: update-object-deployment
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the deployment
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Deployment'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a deployment
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/deployments/{namespace}/{name}:
+    delete:
+      description: Delete a deployment by name
+      operationId: delete-object-deployment
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a deployment
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a deployment by name
+      operationId: get-object-deployment
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Deployment'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a deployment
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/jobs/{namespace}:
+    get:
+      description: Get all jobs
+      operationId: get-object-jobs
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Job'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all jobs
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a job.
+      operationId: create-object-job
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the job
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Job'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a job
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a job.
+      operationId: update-object-job
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the job
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Job'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a job
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/jobs/{namespace}/{name}:
+    delete:
+      description: Delete a job by name
+      operationId: delete-object-job
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a job
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a job by name
+      operationId: get-object-job
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Job'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a job
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/namespaces:
+    get:
+      description: Get all namespaces
+      operationId: get-object-namespaces
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Namespace'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all namespaces
+      tags:
+      - ObjectsClusterLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a namespace.
+      operationId: create-object-namespace
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the namespace
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Namespace'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a namespace
+      tags:
+      - ObjectsClusterLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a namespace.
+      operationId: update-object-namespace
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the namespace
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Namespace'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a namespace
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/namespaces/{name}:
+    delete:
+      description: Delete a namespace by name
+      operationId: delete-object-namespace
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a namespace
+      tags:
+      - ObjectsClusterLevel
+    get:
+      description: Get a namespace by name
+      operationId: get-object-namespace
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Namespace'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a namespace
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/networkPolicies/{namespace}:
+    get:
+      description: Get all networkPolicies
+      operationId: get-object-networkPolicies
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/NetworkPolicy'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all networkPolicies
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a networkPolicy.
+      operationId: create-object-networkPolicy
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the networkPolicy
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/NetworkPolicy'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a networkPolicy
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a networkPolicy.
+      operationId: update-object-networkPolicy
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the networkPolicy
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/NetworkPolicy'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a networkPolicy
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/networkPolicies/{namespace}/{name}:
+    delete:
+      description: Delete a networkPolicy by name
+      operationId: delete-object-networkPolicy
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a networkPolicy
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a networkPolicy by name
+      operationId: get-object-networkPolicy
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/NetworkPolicy'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a networkPolicy
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/nodeMetricses:
+    get:
+      description: Get all nodeMetricses
+      operationId: get-object-nodeMetricses
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/NodeMetrics'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all nodeMetricses
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/nodeMetricses/{name}:
+    get:
+      description: Get a nodeMetrics by name
+      operationId: get-object-nodeMetrics
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/NodeMetrics'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a nodeMetrics
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/nodes:
+    get:
+      description: Get all nodes
+      operationId: get-object-nodes
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Node'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all nodes
+      tags:
+      - ObjectsClusterLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a node.
+      operationId: create-object-node
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the node
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Node'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a node
+      tags:
+      - ObjectsClusterLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a node.
+      operationId: update-object-node
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the node
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Node'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a node
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/nodes/{name}:
+    delete:
+      description: Delete a node by name
+      operationId: delete-object-node
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a node
+      tags:
+      - ObjectsClusterLevel
+    get:
+      description: Get a node by name
+      operationId: get-object-node
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Node'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a node
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/persistentVolumeClaims/{namespace}:
+    get:
+      description: Get all persistentVolumeClaims
+      operationId: get-object-persistentVolumeClaims
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/PersistentVolumeClaim'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all persistentVolumeClaims
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a persistentVolumeClaim.
+      operationId: create-object-persistentVolumeClaim
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the persistentVolumeClaim
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/PersistentVolumeClaim'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a persistentVolumeClaim
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a persistentVolumeClaim.
+      operationId: update-object-persistentVolumeClaim
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the persistentVolumeClaim
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/PersistentVolumeClaim'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a persistentVolumeClaim
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/persistentVolumeClaims/{namespace}/{name}:
+    delete:
+      description: Delete a persistentVolumeClaim by name
+      operationId: delete-object-persistentVolumeClaim
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a persistentVolumeClaim
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a persistentVolumeClaim by name
+      operationId: get-object-persistentVolumeClaim
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/PersistentVolumeClaim'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a persistentVolumeClaim
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/persistentVolumes:
+    get:
+      description: Get all persistentVolumes
+      operationId: get-object-persistentVolumes
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/PersistentVolume'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all persistentVolumes
+      tags:
+      - ObjectsClusterLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a persistentVolume.
+      operationId: create-object-persistentVolume
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the persistentVolume
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/PersistentVolume'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a persistentVolume
+      tags:
+      - ObjectsClusterLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a persistentVolume.
+      operationId: update-object-persistentVolume
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the persistentVolume
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/PersistentVolume'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a persistentVolume
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/persistentVolumes/{name}:
+    delete:
+      description: Delete a persistentVolume by name
+      operationId: delete-object-persistentVolume
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a persistentVolume
+      tags:
+      - ObjectsClusterLevel
+    get:
+      description: Get a persistentVolume by name
+      operationId: get-object-persistentVolume
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/PersistentVolume'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a persistentVolume
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/podMetricses/{namespace}:
+    get:
+      description: Get all podMetricses
+      operationId: get-object-podMetricses
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/PodMetrics'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all podMetricses
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/podMetricses/{namespace}/{name}:
+    get:
+      description: Get a podMetrics by name
+      operationId: get-object-podMetrics
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/PodMetrics'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a podMetrics
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/pods/{namespace}:
+    get:
+      description: Get all pods
+      operationId: get-object-pods
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Pod'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all pods
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a pod.
+      operationId: create-object-pod
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the pod
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Pod'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a pod
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a pod.
+      operationId: update-object-pod
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the pod
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Pod'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a pod
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/pods/{namespace}/{name}:
+    delete:
+      description: Delete a pod by name
+      operationId: delete-object-pod
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a pod
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a pod by name
+      operationId: get-object-pod
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Pod'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a pod
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/replicaSets/{namespace}:
+    get:
+      description: Get all replicaSets
+      operationId: get-object-replicaSets
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ReplicaSet'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all replicaSets
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a replicaSet.
+      operationId: create-object-replicaSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the replicaSet
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ReplicaSet'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a replicaSet
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a replicaSet.
+      operationId: update-object-replicaSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the replicaSet
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ReplicaSet'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a replicaSet
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/replicaSets/{namespace}/{name}:
+    delete:
+      description: Delete a replicaSet by name
+      operationId: delete-object-replicaSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a replicaSet
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a replicaSet by name
+      operationId: get-object-replicaSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ReplicaSet'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a replicaSet
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/roleBindings/{namespace}:
+    get:
+      description: Get all roleBindings
+      operationId: get-object-roleBindings
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/RoleBinding'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all roleBindings
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a roleBinding.
+      operationId: create-object-roleBinding
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the roleBinding
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleBinding'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a roleBinding
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a roleBinding.
+      operationId: update-object-roleBinding
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the roleBinding
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleBinding'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a roleBinding
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/roleBindings/{namespace}/{name}:
+    delete:
+      description: Delete a roleBinding by name
+      operationId: delete-object-roleBinding
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a roleBinding
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a roleBinding by name
+      operationId: get-object-roleBinding
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleBinding'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a roleBinding
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/roles/{namespace}:
+    get:
+      description: Get all roles
+      operationId: get-object-roles
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Role'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all roles
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a role.
+      operationId: create-object-role
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the role
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Role'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a role
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a role.
+      operationId: update-object-role
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the role
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Role'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a role
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/roles/{namespace}/{name}:
+    delete:
+      description: Delete a role by name
+      operationId: delete-object-role
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a role
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a role by name
+      operationId: get-object-role
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Role'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a role
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/secrets/{namespace}:
+    get:
+      description: Get all secrets
+      operationId: get-object-secrets
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Secret'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all secrets
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a secret.
+      operationId: create-object-secret
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the secret
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Secret'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a secret
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a secret.
+      operationId: update-object-secret
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the secret
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Secret'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a secret
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/secrets/{namespace}/{name}:
+    delete:
+      description: Delete a secret by name
+      operationId: delete-object-secret
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a secret
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a secret by name
+      operationId: get-object-secret
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Secret'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a secret
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/serviceAccounts/{namespace}:
+    get:
+      description: Get all serviceAccounts
+      operationId: get-object-serviceAccounts
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ServiceAccount'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all serviceAccounts
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a serviceAccount.
+      operationId: create-object-serviceAccount
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the serviceAccount
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ServiceAccount'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a serviceAccount
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a serviceAccount.
+      operationId: update-object-serviceAccount
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the serviceAccount
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ServiceAccount'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a serviceAccount
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/serviceAccounts/{namespace}/{name}:
+    delete:
+      description: Delete a serviceAccount by name
+      operationId: delete-object-serviceAccount
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a serviceAccount
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a serviceAccount by name
+      operationId: get-object-serviceAccount
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ServiceAccount'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a serviceAccount
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/services/{namespace}:
+    get:
+      description: Get all services
+      operationId: get-object-services
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Service'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all services
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a service.
+      operationId: create-object-service
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the service
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Service'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a service
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a service.
+      operationId: update-object-service
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the service
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Service'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a service
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/services/{namespace}/{name}:
+    delete:
+      description: Delete a service by name
+      operationId: delete-object-service
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a service
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a service by name
+      operationId: get-object-service
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Service'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a service
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/statefulSets/{namespace}:
+    get:
+      description: Get all statefulSets
+      operationId: get-object-statefulSets
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/StatefulSet'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all statefulSets
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a statefulSet.
+      operationId: create-object-statefulSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the statefulSet
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/StatefulSet'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a statefulSet
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a statefulSet.
+      operationId: update-object-statefulSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the statefulSet
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/StatefulSet'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a statefulSet
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/statefulSets/{namespace}/{name}:
+    delete:
+      description: Delete a statefulSet by name
+      operationId: delete-object-statefulSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a statefulSet
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a statefulSet by name
+      operationId: get-object-statefulSet
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/StatefulSet'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a statefulSet
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/storageClasses:
+    get:
+      description: Get all storageClasses
+      operationId: get-object-storageClasses
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/StorageClass'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all storageClasses
+      tags:
+      - ObjectsClusterLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a storageClass.
+      operationId: create-object-storageClass
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the storageClass
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/StorageClass'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a storageClass
+      tags:
+      - ObjectsClusterLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a storageClass.
+      operationId: update-object-storageClass
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the definition of the storageClass
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/StorageClass'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a storageClass
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/objects/{contextName}/storageClasses/{name}:
+    delete:
+      description: Delete a storageClass by name
+      operationId: delete-object-storageClass
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a storageClass
+      tags:
+      - ObjectsClusterLevel
+    get:
+      description: Get a storageClass by name
+      operationId: get-object-storageClass
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/StorageClass'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a storageClass
+      tags:
+      - ObjectsClusterLevel
+  /api/v1/search/{contextName}:
+    post:
+      consumes:
+      - application/json
+      description: Search the context for all kind objects. All the parameters (except
+        the object types) can be given as regexp.
+      operationId: post-search
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the parameters of the search
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/search.Parameter'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              type: array
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Search objects
+      tags:
+      - Search
+  /api/v1/summary/{contextName}:
+    get:
+      description: get the summary of a configuration
+      operationId: get-summary
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/report.ClusterStateReport'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get the global status, or summary, of the given configuration
+      tags:
+      - Summary

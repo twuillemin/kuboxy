@@ -51,6 +51,19 @@ func readConfiguration() (ApplicationConfiguration, error) {
 	// Read values from flag on the command line
 	configurationFilePtr := flag.String("configurationFile", "", "The file having the configuration for the server Properties of this file can be overwritten by passing directly parameters to the application")
 
+	// Get command line configuration
+	commandLineConfiguration := ApplicationConfiguration{
+		Address:                      *flag.String("address", "", "The IP address for listening incoming connections"),
+		RestPort:                     *flag.Int("restPort", -1, "The port for the REST services"),
+		WebSocketPort:                *flag.Int("webSocketPort", -1, "The port for the WebSocket for events"),
+		CertificateFileName:          *flag.String("certificateFileName", "", "The  name of the public certificate file"),
+		PrivateKeyFileName:           *flag.String("privateKeyFileName", "", "The  name of the private key file"),
+		KubeContextConfigurationFile: *flag.String("kubeContextConfigurationFile", "", "The  name of the file keeping the configuration of the context/cluster to connect to"),
+	}
+
+	// Parse the flags
+	flag.Parse()
+
 	// Get home configuration
 	homeConfiguration, err := getHomeConfigurationFile()
 	if err != nil {
@@ -67,15 +80,6 @@ func readConfiguration() (ApplicationConfiguration, error) {
 		updateConfiguration(&config, specificConfiguration)
 	}
 
-	// Get command line configuration
-	commandLineConfiguration := ApplicationConfiguration{
-		Address:                      *flag.String("address", "", "The IP address for listening incoming connections"),
-		RestPort:                     *flag.Int("restPort", -1, "The port for the REST services"),
-		WebSocketPort:                *flag.Int("webSocketPort", -1, "The port for the WebSocket for events"),
-		CertificateFileName:          *flag.String("certificateFileName", "", "The  name of the public certificate file"),
-		PrivateKeyFileName:           *flag.String("privateKeyFileName", "", "The  name of the private key file"),
-		KubeContextConfigurationFile: *flag.String("kubeContextConfigurationFile", "", "The  name of the file keeping the configuration of the context/cluster to connect to"),
-	}
 	updateConfiguration(&config, commandLineConfiguration)
 
 	return config, nil

@@ -13,7 +13,7 @@ import (
 type ApplicationConfiguration struct {
 	Address                      string `json:"address,omitempty" yaml:"address,omitempty"`
 	RestPort                     int    `json:"restPort,omitempty" yaml:"restPort,omitempty"`
-	WebSocketPort                int    `json:"webSocketPort,omitempty" yaml:"websocketPort,omitempty"`
+	WebSocketPort                int    `json:"webSocketPort,omitempty" yaml:"webSocketPort,omitempty"`
 	CertificateFileName          string `json:"certificateFileName,omitempty" yaml:"certificateFileName,omitempty"`
 	PrivateKeyFileName           string `json:"privateKeyFileName,omitempty" yaml:"privateKeyFileName,omitempty"`
 	KubeContextConfigurationFile string `json:"kubeContextConfigurationFile,omitempty" yaml:"kubeContextConfigurationFile,omitempty"`

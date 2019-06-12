@@ -168,7 +168,7 @@ func updateConfiguration(toUpdate *ApplicationConfiguration, source ApplicationC
 	}
 	if len(source.CertificateFileName) != 0 && len(source.PrivateKeyFileName) != 0 {
 		toUpdate.CertificateFileName = source.CertificateFileName
-		toUpdate.CertificateFileName = source.CertificateFileName
+		toUpdate.PrivateKeyFileName = source.PrivateKeyFileName
 	}
 	if len(source.KubeContextConfigurationFile) > 0 {
 		toUpdate.KubeContextConfigurationFile = source.KubeContextConfigurationFile

@@ -55,7 +55,7 @@ var builderTemplate = template.Must(template.New("").Parse(`// Package event reg
 package event
 
 import (
-	"github.com/twuillemin/kuboxy/pkg/configuration"
+	"github.com/twuillemin/kuboxy/pkg/context"
 	appsv1 "k8s.io/api/apps/v1"
 	batchv1 "k8s.io/api/batch/v1"
 	batchv1beta1 "k8s.io/api/batch/v1beta1"
@@ -94,12 +94,12 @@ func Add{{ .Name }}EventClient(contextName string, namespace string, client chan
 	ctxReceiver, ok := contextReceivers[contextName]
 	if !ok {
 
-		clientset, err := configuration.GetClientset(contextName)
+		clientset, err := context.GetClientset(contextName)
 		if err != nil {
 			return err
 		}
 
-		metrics, err := configuration.GetMetrics(contextName)
+		metrics, err := context.GetMetrics(contextName)
 		if err != nil {
 			return err
 		}

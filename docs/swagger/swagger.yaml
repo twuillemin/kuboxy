@@ -1089,213 +1089,6 @@ paths:
       summary: Get all the labels and their values
       tags:
       - Labels
-  /api/v1/objects/{contextName}/ReplicationControllers/{namespace}:
-    get:
-      description: Get all ReplicationControllers
-      operationId: get-object-ReplicationControllers
-      parameters:
-      - description: the name of the context
-        in: path
-        name: contextName
-        required: true
-        type: string
-      - description: the name of the namespace
-        in: path
-        name: namespace
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/ReplicationController'
-            type: array
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-      summary: Get all ReplicationControllers
-      tags:
-      - ObjectsNamespaceLevel
-    post:
-      consumes:
-      - application/json
-      description: Create a replicationController.
-      operationId: create-object-replicationController
-      parameters:
-      - description: the name of the context
-        in: path
-        name: contextName
-        required: true
-        type: string
-      - description: the name of the namespace
-        in: path
-        name: namespace
-        required: true
-        type: string
-      - description: the definition of the replicationController
-        in: body
-        name: body
-        required: true
-        schema:
-          type: object
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ReplicationController'
-            type: object
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-      summary: Create a replicationController
-      tags:
-      - ObjectsNamespaceLevel
-    put:
-      consumes:
-      - application/json
-      description: Update a replicationController.
-      operationId: update-object-replicationController
-      parameters:
-      - description: the name of the context
-        in: path
-        name: contextName
-        required: true
-        type: string
-      - description: the name of the namespace
-        in: path
-        name: namespace
-        required: true
-        type: string
-      - description: the definition of the replicationController
-        in: body
-        name: body
-        required: true
-        schema:
-          type: object
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ReplicationController'
-            type: object
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-      summary: Update a replicationController
-      tags:
-      - ObjectsNamespaceLevel
-  /api/v1/objects/{contextName}/ReplicationControllers/{namespace}/{name}:
-    delete:
-      description: Delete a replicationController by name
-      operationId: delete-object-replicationController
-      parameters:
-      - description: the name of the context
-        in: path
-        name: contextName
-        required: true
-        type: string
-      - description: the name of the namespace
-        in: path
-        name: namespace
-        required: true
-        type: string
-      - description: the name of the object
-        in: path
-        name: name
-        required: true
-        type: string
-      responses:
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-      summary: Delete a replicationController
-      tags:
-      - ObjectsNamespaceLevel
-    get:
-      description: Get a replicationController by name
-      operationId: get-object-replicationController
-      parameters:
-      - description: the name of the context
-        in: path
-        name: contextName
-        required: true
-        type: string
-      - description: the name of the namespace
-        in: path
-        name: namespace
-        required: true
-        type: string
-      - description: the name of the object
-        in: path
-        name: name
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ReplicationController'
-            type: object
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-            type: object
-      summary: Get a replicationController
-      tags:
-      - ObjectsNamespaceLevel
   /api/v1/objects/{contextName}/clusterRoleBindings:
     get:
       description: Get all clusterRoleBindings
@@ -4213,6 +4006,213 @@ paths:
             $ref: '#/definitions/echo.HTTPError'
             type: object
       summary: Get a replicaSet
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/replicationControllers/{namespace}:
+    get:
+      description: Get all replicationControllers
+      operationId: get-object-replicationControllers
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ReplicationController'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get all replicationControllers
+      tags:
+      - ObjectsNamespaceLevel
+    post:
+      consumes:
+      - application/json
+      description: Create a replicationController.
+      operationId: create-object-replicationController
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the replicationController
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ReplicationController'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create a replicationController
+      tags:
+      - ObjectsNamespaceLevel
+    put:
+      consumes:
+      - application/json
+      description: Update a replicationController.
+      operationId: update-object-replicationController
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the definition of the replicationController
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ReplicationController'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Update a replicationController
+      tags:
+      - ObjectsNamespaceLevel
+  /api/v1/objects/{contextName}/replicationControllers/{namespace}/{name}:
+    delete:
+      description: Delete a replicationController by name
+      operationId: delete-object-replicationController
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Delete a replicationController
+      tags:
+      - ObjectsNamespaceLevel
+    get:
+      description: Get a replicationController by name
+      operationId: get-object-replicationController
+      parameters:
+      - description: the name of the context
+        in: path
+        name: contextName
+        required: true
+        type: string
+      - description: the name of the namespace
+        in: path
+        name: namespace
+        required: true
+        type: string
+      - description: the name of the object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ReplicationController'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get a replicationController
       tags:
       - ObjectsNamespaceLevel
   /api/v1/objects/{contextName}/roleBindings/{namespace}:

@@ -61,15 +61,14 @@ import (
 	core "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
 )
-
 {{ range .ObjectTypes }}
 // {{ .Variable }}sTo{{ .Name }}Ids convert a list of {{ .Name }}s to a list of their ids
 func {{ .Variable }}sTo{{ .Name }}Ids(objects []{{ .FullName }}) []types.UID {
-	
+
 	if objects == nil {
 		return make([]types.UID, 0, 0)
 	}
-	
+
 	ids := make([]types.UID, 0, len(objects))
 	for _, provider := range objects {
 		ids = append(ids, provider.UID)

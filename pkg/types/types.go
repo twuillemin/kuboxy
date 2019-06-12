@@ -123,7 +123,7 @@ var ObjectDefinitions = []ObjectDefinition{
 	{Pod, NamespaceFamily, "pod", "pods", "Pod", "Pods", "corev1.Pod", "CoreV1()", "pods"},
 	{PersistentVolumeClaim, NamespaceFamily, "persistentVolumeClaim", "persistentVolumeClaims", "PersistentVolumeClaim", "PersistentVolumeClaims", "corev1.PersistentVolumeClaim", "CoreV1()", "persistentvolumeclaims"},
 	{ConfigMap, NamespaceFamily, "configMap", "configMaps", "ConfigMap", "ConfigMaps", "corev1.ConfigMap", "CoreV1()", "configmaps"},
-	{ReplicationController, NamespaceFamily, "replicationController", "ReplicationControllers", "ReplicationController", "ReplicationControllers", "corev1.ReplicationController", "CoreV1()", "replicationcontrollers"},
+	{ReplicationController, NamespaceFamily, "replicationController", "replicationControllers", "ReplicationController", "ReplicationControllers", "corev1.ReplicationController", "CoreV1()", "replicationcontrollers"},
 	{Secret, NamespaceFamily, "secret", "secrets", "Secret", "Secrets", "corev1.Secret", "CoreV1()", "secrets"},
 	{ServiceAccount, NamespaceFamily, "serviceAccount", "serviceAccounts", "ServiceAccount", "ServiceAccounts", "corev1.ServiceAccount", "CoreV1()", "serviceaccounts"},
 	{Deployment, NamespaceFamily, "deployment", "deployments", "Deployment", "Deployments", "appsv1.Deployment", "AppsV1()", "deployments"},

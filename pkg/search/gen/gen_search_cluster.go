@@ -58,13 +58,13 @@ func searchClusterObjects(contextName string, searchParameter *preparedParameter
 		if err != nil {
 			return err
 		}
-		{{ .Variable }}Results := make([]interface{},0,0)
+		{{ .Variable }}Results := make([]interface{}, 0, 0)
 		for _, {{ .Variable }} := range {{ .PluralVariable }} {
 			if isValidClusterObject({{ .Variable }}.ObjectMeta, searchParameter) {
-				{{ .Variable }}Results = append({{ .Variable }}Results, {{ .Variable }} )
+				{{ .Variable }}Results = append({{ .Variable }}Results, {{ .Variable }})
 			}
 		}
-		results[types.{{ .Name }}]={{ .Variable }}Results
+		results[types.{{ .Name }}] = {{ .Variable }}Results
 	}
 {{ end }}
 	return nil

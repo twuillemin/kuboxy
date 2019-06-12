@@ -55,7 +55,7 @@ var builderTemplate = template.Must(template.New("").Parse(`// Package event reg
 package event
 
 import (
-	"github.com/twuillemin/kuboxy/pkg/configuration"
+	"github.com/twuillemin/kuboxy/pkg/context"
 	corev1 "k8s.io/api/core/v1"
 	rbacv1 "k8s.io/api/rbac/v1"
 	storagev1 "k8s.io/api/storage/v1"
@@ -86,12 +86,12 @@ func Add{{ .Name }}EventClient(contextName string, client chan {{ .Name }}Event)
 	ctxReceiver, ok := contextReceivers[contextName]
 	if !ok {
 
-		clientset, err := configuration.GetClientset(contextName)
+		clientset, err := context.GetClientset(contextName)
 		if err != nil {
 			return err
 		}
 
-		metrics, err := configuration.GetMetrics(contextName)
+		metrics, err := context.GetMetrics(contextName)
 		if err != nil {
 			return err
 		}
@@ -138,7 +138,7 @@ func Remove{{ .Name }}EventClient(contextName string, client chan {{ .Name }}Eve
 
 	// Remove the client
 	receiver.removeClient(client)
-	
+
 	// If no more client, stop receiving event
 	if len(receiver.clients) == 0 {
 		receiver.stop()

@@ -58,12 +58,12 @@ import (
 // Get{{ .Plural }} returns all the {{ .Name }}.
 func Get{{ .Plural }}(contextName string) ([]{{ .FullName }}, error) {
 
-	clientset, err := configuration.GetClientset(contextName)
+	clientset, err := context.GetClientset(contextName)
 	if err != nil {
 		return nil, err
 	}
 
-	if results := event.Get{{ .Plural }}(contextName) ; results != nil {
+	if results := event.Get{{ .Plural }}(contextName); results != nil {
 		return results, nil
 	}
 
@@ -73,12 +73,12 @@ func Get{{ .Plural }}(contextName string) ([]{{ .FullName }}, error) {
 // Get{{ .Name }} returns the {{ .Name }} by its name.
 func Get{{ .Name }}(contextName string, name string) (*{{ .FullName }}, error) {
 
-	clientset, err := configuration.GetClientset(contextName)
+	clientset, err := context.GetClientset(contextName)
 	if err != nil {
 		return nil, err
 	}
 
-	if results := event.Get{{ .Plural }}(contextName) ; results != nil {
+	if results := event.Get{{ .Plural }}(contextName); results != nil {
 		for _, {{ .Variable }} := range results {
 			if {{ .Variable }}.Name == name {
 				return &{{ .Variable }}, nil
@@ -93,7 +93,7 @@ func Get{{ .Name }}(contextName string, name string) (*{{ .FullName }}, error) {
 // Create{{ .Name }} creates the {{ .Name }} with the given model.
 func Create{{ .Name }}(contextName string, {{ .Variable }} *{{ .FullName }}) (*{{ .FullName }}, error) {
 
-	clientset, err := configuration.GetClientset(contextName)
+	clientset, err := context.GetClientset(contextName)
 	if err != nil {
 		return nil, err
 	}
@@ -104,7 +104,7 @@ func Create{{ .Name }}(contextName string, {{ .Variable }} *{{ .FullName }}) (*{
 // Update{{ .Name }} updates the {{ .Name }} with the given model.
 func Update{{ .Name }}(contextName string, {{ .Variable }} *{{ .FullName }}) (*{{ .FullName }}, error) {
 
-	clientset, err := configuration.GetClientset(contextName)
+	clientset, err := context.GetClientset(contextName)
 	if err != nil {
 		return nil, err
 	}
@@ -115,7 +115,7 @@ func Update{{ .Name }}(contextName string, {{ .Variable }} *{{ .FullName }}) (*{
 // Delete{{ .Name }} deletes the {{ .Name }} by its name.
 func Delete{{ .Name }}(contextName string, name string) error {
 
-	clientset, err := configuration.GetClientset(contextName)
+	clientset, err := context.GetClientset(contextName)
 	if err != nil {
 		return err
 	}

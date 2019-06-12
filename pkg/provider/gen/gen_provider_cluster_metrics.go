@@ -56,12 +56,12 @@ import (
 // Get{{ .Plural }} returns all the {{ .Name }}.
 func Get{{ .Plural }}(contextName string) ([]{{ .FullName }}, error) {
 
-	metrics, err := configuration.GetMetrics(contextName)
+	metrics, err := context.GetMetrics(contextName)
 	if err != nil {
 		return nil, err
 	}
 
-	if results := event.Get{{ .Plural }}(contextName) ; results != nil {
+	if results := event.Get{{ .Plural }}(contextName); results != nil {
 		return results, nil
 	}
 
@@ -71,12 +71,12 @@ func Get{{ .Plural }}(contextName string) ([]{{ .FullName }}, error) {
 // Get{{ .Name }} returns the {{ .Name }} by its name.
 func Get{{ .Name }}(contextName string, name string) (*{{ .FullName }}, error) {
 
-	metrics, err := configuration.GetMetrics(contextName)
+	metrics, err := context.GetMetrics(contextName)
 	if err != nil {
 		return nil, err
 	}
 
-	if results := event.Get{{ .Plural }}(contextName) ; results != nil {
+	if results := event.Get{{ .Plural }}(contextName); results != nil {
 		for _, {{ .Variable }} := range results {
 			if {{ .Variable }}.Name == name {
 				return &{{ .Variable }}, nil

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"log"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -76,7 +76,6 @@ func createServer(address string, certificateFileName string, privateKeyFileName
 
 	// In case of error, quit
 	if err != nil {
-		fmt.Println("Unable to start server.")
-		os.Exit(-1)
+		log.Fatalf("Unable to start server due to error: \"%v\"", err)
 	}
 }

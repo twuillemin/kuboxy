@@ -1,5 +1,4 @@
 # Introduction
-
 Kuboxy (KUBernetes rOXY) is a software proxy that allows a user to connect to multiple Kubernetes cluster from a single 
 server.
 
@@ -27,8 +26,7 @@ go build -o kuboxy.exe cmd/main.go
 # Configuration
 
 ## Options
-
-Options are the following
+Options are the following:
 
 | Name | Usage | Default Value | Example |
 | --- | --- | --- | --- |
@@ -68,7 +66,6 @@ or
 By default the configuration is located in ```~/.kuboxy/application.config```.
 
 ## Order of evaluations
-
 The options are evaluated in the following order:
 
   1) The default values
@@ -80,17 +77,99 @@ Although it may seems a bit convoluted, it is not necessary to use all possibili
 everything in ```~/.kuboxy/application.config```.
 
 # REST API
-All the endpoints are available: https://localhost:8080/swagger/index.html
+All the endpoints are available: https://localhost:8080/swagger/index.html. The endpoints are grouped by families:
+
+ * Configuration
+ * Labels
+ * Objects at the cluster level
+ * Objects at the namespace level
+ * Search and summary
+ 
+## Configuration endpoints
+The configuration endpoints allows to configure the application, more precisely the cluster referenced by the *Cuboxy*. 
+As by Kubernetes standards, the following information can be configured:
+
+ * The cluster: name, server, certificate
+ * The user: name, certificate or password
+ * The context: name, cluster and user with an optional namespace
+ 
+## Labels
+This single endpoint allows to retrieve easily all the labels and their possible values for context/namespace. 
+
+## Objects at the cluster level
+These endpoints allows CRUD operations on the following objects:
+
+ * clusterRoleBindings
+ * clusterRoles
+ * namespaces
+ * nodeMetricses
+ * nodes
+ * persistentVolumes
+ * storageClasses
+ 
+## Objects at the namespace level
+These endpoints allows CRUD operations on the following objects:
+
+ * configMaps
+ * cronJobs
+ * daemonSets
+ * deployments
+ * jobs
+ * networkPolicies
+ * persistentVolumeClaims
+ * podMetricses
+ * pods
+ * replicaSets
+ * replicationControllers
+ * roleBindings
+ * roles
+ * secrets
+ * serviceAccounts
+ * services
+ * statefulSets
+ 
+## Search and summary
+This two endpoints allows to easily search objects in a cluster and to generate a high level overview of state of the 
+cluster
 
 # WebSocket events
+It is possible for a client to subscribe to a context events. The subscription is running over a WebSocket connection, 
+so once the chanel is open, a client can't manage its subscription and receive events without further connection.
 
-TO BE WRITTEN
+The process is the following:
+ 
+ 1) The client connect to the WebSocket (by default https://localhost:8081/api/v1/events/)
+ 2) The client send a request for subscribing/unsubscribing to event. Requests are defined here after
+ 3) As soon as change (new/update/delete) is done in the cluster about an object, the client will receive the object 
+ over the WebSocket
+ 
+The command object has the following structure:
+ 
+```json
+{
+  "command": "The command",
+  "objectType": "The type of object (optional)",
+  "contextName": "The name of the context (optional)",
+  "namespaceName": "The namespace (optional)"
+}
+```
 
+The command sent by the client is one of the following:
+
+ * "AddSource": For subscribing a new source of event.
+ * "RemoveSource": For unsubscribing to an existing source.
+ * "RemoveAllSources": For unsubscribing to ... all sources.
+ 
 # Building the project
 
 ## Building from sources
 
 ### Generating Swagger documentation 
+For generating the swagger documentation:
+  
+  1) Install, if needed, Swaggo : `go get github.com/swaggo/swag/cmd/swag` that will generate a _swag_ executable
+  2) Run `swag init` in the root of the project
+  3) In the folder _docs_ of the project, run `update_docs.go`
 
 ## Generating the JSON schemas
 

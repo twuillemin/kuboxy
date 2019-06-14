@@ -160,18 +160,22 @@ The command sent by the client is one of the following:
  * "RemoveSource": For unsubscribing to an existing source.
  * "RemoveAllSources": For unsubscribing to ... all sources.
  
-# Building the project
+# Generating documentation
 
-## Building from sources
-
-### Generating Swagger documentation 
-For generating the swagger documentation:
+## Generating Swagger documentation 
+Swagger/swaggo are using a definition located at `docs/docs.go`. This documentation is not generated automatically at
+the compilation time. So in case of changes in the API, it is necessary to regenerate this file with the following
+procedure:
   
   1) Install, if needed, Swaggo : `go get github.com/swaggo/swag/cmd/swag` that will generate a _swag_ executable
   2) Run `swag init` in the root of the project
   3) In the folder _docs_ of the project, run `update_docs.go`
 
 ## Generating the JSON schemas
+The documentation also includes the JSON schemas for the various object managed by the application. This schemas are
+located in the folder `docs/json_schemas`. Although not directly used by the application, the may be used by the client.
+For generating the schemas, run the file `generator.go` located in `tools/json_schema`.
+
 
 # License
 

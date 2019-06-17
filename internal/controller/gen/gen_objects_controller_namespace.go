@@ -50,8 +50,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/labstack/echo/v4"
 	"github.com/twuillemin/kuboxy/pkg/provider"
-	"github.com/labstack/echo"
 
 	appsv1 "k8s.io/api/apps/v1"
 	batchv1 "k8s.io/api/batch/v1"
@@ -82,8 +82,8 @@ func registerObjectNamespaceControllers(e *echo.Echo) {
 // @Param contextName path string true "the name of the context"
 // @Param namespace path string true "the name of the namespace"
 // @Success 200 {array} {{ .Name }}
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/objects/{contextName}/{{ .PluralVariable }}/{namespace} [get]
 func getObject{{ .Plural }}(e echo.Context) error {
 
@@ -109,8 +109,8 @@ func getObject{{ .Plural }}(e echo.Context) error {
 // @Param namespace path string true "the name of the namespace"
 // @Param name path string true "the name of the object"
 // @Success 200 {object} {{ .Name }}
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/objects/{contextName}/{{ .PluralVariable }}/{namespace}/{name} [get]
 func getObject{{ .Name }}(e echo.Context) error {
 
@@ -138,9 +138,9 @@ func getObject{{ .Name }}(e echo.Context) error {
 // @Param namespace path string true "the name of the namespace"
 // @Param body body {{ .Name }} true "the definition of the {{ .Variable }}"
 // @Success 200 {object} {{ .Name }}
-// @Failure 400 {object} echo.HTTPError
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 400 {object} HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/objects/{contextName}/{{ .PluralVariable }}/{namespace} [post]
 func createObject{{ .Name }}(e echo.Context) error {
 
@@ -177,9 +177,9 @@ func createObject{{ .Name }}(e echo.Context) error {
 // @Param namespace path string true "the name of the namespace"
 // @Param body body {{ .Name }} true "the definition of the {{ .Variable }}"
 // @Success 200 {object} {{ .Name }}
-// @Failure 400 {object} echo.HTTPError
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 400 {object} HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/objects/{contextName}/{{ .PluralVariable }}/{namespace} [put]
 func updateObject{{ .Name }}(e echo.Context) error {
 
@@ -213,8 +213,8 @@ func updateObject{{ .Name }}(e echo.Context) error {
 // @Param contextName path string true "the name of the context"
 // @Param namespace path string true "the name of the namespace"
 // @Param name path string true "the name of the object"
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/objects/{contextName}/{{ .PluralVariable }}/{namespace}/{name} [delete]
 func deleteObject{{ .Name }}(e echo.Context) error {
 

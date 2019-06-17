@@ -59,8 +59,8 @@ package controller
 import (
 	"net/http"
 
+	"github.com/labstack/echo/v4"
 	"github.com/twuillemin/kuboxy/pkg/provider"
-	"github.com/labstack/echo"
 )
 
 func registerLabelsController(e *echo.Echo) {
@@ -78,8 +78,8 @@ func registerLabelsController(e *echo.Echo) {
 // @Param contextName path string true "the name of the context"
 // @Param namespace path string true "the name of the namespace"
 // @Success 200 {object} MapOfStrings
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/labels/{contextName}/{namespace} [get]
 func getLabels(e echo.Context) error {
 

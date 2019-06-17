@@ -44,6 +44,7 @@ func registerConfigurationController(e *echo.Echo) {
 // @Tags Configuration
 // @Produce application/json
 // @Success 200 {object} context.KubeConfig
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/ [get]
 func getConfiguration(e echo.Context) error {
 
@@ -61,6 +62,7 @@ func getConfiguration(e echo.Context) error {
 // @Tags Configuration
 // @Produce application/json
 // @Success 200 {array} context.NamedUser
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/users/ [get]
 func getConfigurationUsers(e echo.Context) error {
 
@@ -82,8 +84,9 @@ func getConfigurationUsers(e echo.Context) error {
 // @Param name path string true "the name of the user in the configuration"
 // @Param body body context.ParamCredentialsUserNamePassword true "the credentials"
 // @Success 200 {object} context.NamedUser
-// @Success 400 {object} echo.HTTPError
-// @Success 409 {object} echo.HTTPError
+// @Failure 400 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/users/{name}/username-password [post]
 func createConfigurationUserUserNamePassword(e echo.Context) error {
 
@@ -135,8 +138,9 @@ func createConfigurationUserUserNamePassword(e echo.Context) error {
 // @Param name path string true "the name of the user in the configuration"
 // @Param body body context.ParamCredentialsUserNamePassword true "the credentials"
 // @Success 200 {object} context.NamedUser
-// @Failure 404 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/users/{name}/username-password [put]
 func updateConfigurationUserUserNamePassword(e echo.Context) error {
 
@@ -187,8 +191,9 @@ func updateConfigurationUserUserNamePassword(e echo.Context) error {
 // @Param name path string true "the name of the user in the configuration"
 // @Param body body context.ParamCredentialsCertificateFile true "the credentials"
 // @Success 200 {object} context.NamedUser
-// @Failure 400 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 400 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/users/{name}/certificate-file [post]
 func createConfigurationUserFile(e echo.Context) error {
 
@@ -239,8 +244,9 @@ func createConfigurationUserFile(e echo.Context) error {
 // @Param name path string true "the name of the user in the configuration"
 // @Param body body context.ParamCredentialsCertificateFile true "the credentials"
 // @Success 200 {object} context.NamedUser
-// @Failure 404 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/users/{name}/certificate-file [put]
 func updateConfigurationUserFile(e echo.Context) error {
 
@@ -291,8 +297,9 @@ func updateConfigurationUserFile(e echo.Context) error {
 // @Param name path string true "the name of the user in the configuration"
 // @Param body body context.ParamCredentialsCertificateEmbedded true "the credentials"
 // @Success 200 {object} context.NamedUser
-// @Failure 400 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 400 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/users/{name}/certificate-embedded [post]
 func createConfigurationUserEmbedded(e echo.Context) error {
 
@@ -343,8 +350,9 @@ func createConfigurationUserEmbedded(e echo.Context) error {
 // @Param name path string true "the name of the user in the configuration"
 // @Param body body context.ParamCredentialsCertificateEmbedded true "the credentials"
 // @Success 200 {object} context.NamedUser
-// @Failure 404 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/users/{name}/certificate-embedded [put]
 func updateConfigurationUserEmbedded(e echo.Context) error {
 
@@ -392,6 +400,7 @@ func updateConfigurationUserEmbedded(e echo.Context) error {
 // @Tags Configuration
 // @Produce application/json
 // @Success 200 {array} context.NamedCluster
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/clusters/ [get]
 func getConfigurationClusters(e echo.Context) error {
 
@@ -412,8 +421,9 @@ func getConfigurationClusters(e echo.Context) error {
 // @Param name path string true "the name of the cluster in the configuration"
 // @Param body body context.ParamClusterInsecure true "the definition of the cluster"
 // @Success 200 {object} context.NamedCluster
-// @Failure 400 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 400 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/clusters/{name}/insecure [post]
 func createConfigurationClusterInsecure(e echo.Context) error {
 
@@ -464,8 +474,9 @@ func createConfigurationClusterInsecure(e echo.Context) error {
 // @Param name path string true "the name of the cluster in the configuration"
 // @Param body body context.ParamClusterInsecure true "the definition of the cluster"
 // @Success 200 {object} context.NamedCluster
-// @Failure 404 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/clusters/{name}/insecure [put]
 func updateConfigurationClusterInsecure(e echo.Context) error {
 
@@ -516,8 +527,9 @@ func updateConfigurationClusterInsecure(e echo.Context) error {
 // @Param name path string true "the name of the cluster in the configuration"
 // @Param body body context.ParamClusterCertificateFile true "the definition of the cluster"
 // @Success 200 {object} context.NamedCluster
-// @Failure 400 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 400 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/clusters/{name}/certificate-file [post]
 func createConfigurationClusterFile(e echo.Context) error {
 
@@ -568,8 +580,9 @@ func createConfigurationClusterFile(e echo.Context) error {
 // @Param name path string true "the name of the cluster in the configuration"
 // @Param body body context.ParamClusterCertificateFile true "the definition of the cluster"
 // @Success 200 {object} context.NamedCluster
-// @Failure 404 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/clusters/{name}/certificate-file [put]
 func updateConfigurationClusterFile(e echo.Context) error {
 
@@ -620,8 +633,9 @@ func updateConfigurationClusterFile(e echo.Context) error {
 // @Param name path string true "the name of the cluster in the configuration"
 // @Param body body context.ParamClusterCertificateEmbedded true "the definition of the cluster"
 // @Success 200 {object} context.NamedCluster
-// @Success 400 {object} echo.HTTPError
-// @Success 409 {object} echo.HTTPError
+// @Success 400 {object} HTTPError
+// @Success 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/clusters/{name}/certificate-embedded [post]
 func createConfigurationClusterEmbedded(e echo.Context) error {
 
@@ -672,8 +686,9 @@ func createConfigurationClusterEmbedded(e echo.Context) error {
 // @Param name path string true "the name of the cluster in the configuration"
 // @Param body body context.ParamClusterCertificateEmbedded true "the definition of the cluster"
 // @Success 200 {object} context.NamedCluster
-// @Failure 404 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/clusters/{name}/certificate-embedded [put]
 func updateConfigurationClusterEmbedded(e echo.Context) error {
 
@@ -721,6 +736,7 @@ func updateConfigurationClusterEmbedded(e echo.Context) error {
 // @Tags Configuration
 // @Produce application/json
 // @Success 200 {array} context.NamedContext
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/contexts/ [get]
 func getConfigurationContexts(e echo.Context) error {
 
@@ -741,8 +757,9 @@ func getConfigurationContexts(e echo.Context) error {
 // @Param name path string true "the name of the context in the configuration"
 // @Param body body context.ParamContext true "the definition of the context"
 // @Success 200 {object} context.NamedContext
-// @Success 400 {object} echo.HTTPError
-// @Success 409 {object} echo.HTTPError
+// @Success 400 {object} HTTPError
+// @Success 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/contexts/{name} [post]
 func createConfigurationContext(e echo.Context) error {
 
@@ -793,8 +810,9 @@ func createConfigurationContext(e echo.Context) error {
 // @Param name path string true "the name of the context in the configuration"
 // @Param body body context.ParamContext true "the definition of the context"
 // @Success 200 {object} context.NamedCluster
-// @Failure 404 {object} echo.HTTPError
-// @Failure 409 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 409 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/configuration/contexts/{name} [put]
 func updateConfigurationContext(e echo.Context) error {
 

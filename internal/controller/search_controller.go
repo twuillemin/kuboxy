@@ -1,9 +1,10 @@
 package controller
 
 import (
-	"github.com/labstack/echo"
-	"github.com/twuillemin/kuboxy/pkg/search"
 	"net/http"
+
+	"github.com/labstack/echo/v4"
+	"github.com/twuillemin/kuboxy/pkg/search"
 )
 
 func registerSearchControllers(e *echo.Echo) {
@@ -21,8 +22,8 @@ func registerSearchControllers(e *echo.Echo) {
 // @Param contextName path string true "the name of the context"
 // @Param body body search.Parameter true "the parameters of the search"
 // @Success 200 {array} array interface{}
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/search/{contextName} [post]
 func postSearch(e echo.Context) error {
 

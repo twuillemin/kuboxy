@@ -1,9 +1,10 @@
 package controller
 
 import (
-	"github.com/labstack/echo"
-	"github.com/twuillemin/kuboxy/pkg/report"
 	"net/http"
+
+	"github.com/labstack/echo/v4"
+	"github.com/twuillemin/kuboxy/pkg/report"
 )
 
 func registerSummaryControllers(e *echo.Echo) {
@@ -19,8 +20,8 @@ func registerSummaryControllers(e *echo.Echo) {
 // @Produce application/json
 // @Param contextName path string true "the name of the context"
 // @Success 200 {object} report.ClusterStateReport
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/summary/{contextName} [get]
 func getSummary(e echo.Context) error {
 

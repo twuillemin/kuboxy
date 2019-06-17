@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"github.com/swaggo/echo-swagger"
 	"github.com/twuillemin/kuboxy/docs"
 )
@@ -15,14 +15,13 @@ import (
 //go:generate go run gen/gen_objects_controller_namespace.go
 //go:generate go run gen/gen_objects_controller_namespace_metrics.go
 
-// @title Kubernetes Studio Backend Service
-// @version 1.0
-// @description The backend services for Kubernetes Studio
-// @termsOfService http://uxxu.io/
+// @title Kubernetes Proxy
+// @version 0.3.0
+// @description A single proxy for multiple Kubernetes clusters
 
-// @contact.name Thomas
-// @contact.url http://uxxu.io/
-// @contact.email thomas@uxxu.io
+// @contact.name Thomas Wuillemin
+// @contact.url http://www.wuillemin.net/
+// @contact.email thomas.wuillemin@gmail.com
 
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html

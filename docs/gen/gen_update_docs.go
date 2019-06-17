@@ -235,17 +235,20 @@ func generateAdditionalDocumentation() []string {
 	results = addNewObject(results, missings, corev1.VolumeMount{}, "corev1", false)
 	results = addNewObject(results, missings, corev1.VolumeNodeAffinity{}, "corev1", false)
 	results = addNewObject(results, missings, corev1.WeightedPodAffinityTerm{}, "corev1", false)
+	results = addNewObject(results, missings, corev1.WindowsSecurityContextOptions{}, "corev1", false)
 
 	results = addNewObject(results, missings, intstr.IntOrString{}, "intstr", false)
 
 	results = addNewObject(results, missings, metricsv1beta1.ContainerMetrics{}, "metricsv1beta1", false)
 
 	results = addNewObject(results, missings, metav1.Duration{}, "metav1", false)
+	results = addNewObject(results, missings, metav1.Fields{}, "metav1", false)
 	results = addNewObject(results, missings, metav1.Initializer{}, "metav1", false)
 	results = addNewObject(results, missings, metav1.Initializers{}, "metav1", false)
 	results = addNewObject(results, missings, metav1.LabelSelector{}, "metav1", false)
 	results = addNewObject(results, missings, metav1.LabelSelectorRequirement{}, "metav1", false)
 	results = addNewObject(results, missings, metav1.ListMeta{}, "metav1", false)
+	results = addNewObject(results, missings, metav1.ManagedFieldsEntry{}, "metav1", false)
 	results = addNewObject(results, missings, metav1.ObjectMeta{}, "metav1", false)
 	results = addNewObject(results, missings, metav1.OwnerReference{}, "metav1", false)
 	results = addNewObject(results, missings, metav1.Status{}, "metav1", false)
@@ -268,6 +271,7 @@ func generateAdditionalDocumentation() []string {
 
 	// Add the hard coded objects
 	results = addMapOfStrings(results)
+	results = addHTTPError(results)
 
 	missingNames := make([]string, 0, len(missings))
 	for k := range missings {
@@ -318,6 +322,18 @@ func addMapOfStrings(lines []string) []string {
 	lines = append(lines, fmt.Sprintf("        \"items\": {\n"))
 	lines = append(lines, fmt.Sprintf("            \"type\": \"string\"\n"))
 	lines = append(lines, fmt.Sprintf("        }\n"))
+	lines = append(lines, fmt.Sprintf("    }\n"))
+	lines = append(lines, fmt.Sprintf("},\n"))
+
+	return lines
+}
+
+func addHTTPError(lines []string) []string {
+
+	lines = append(lines, fmt.Sprintf("\"HTTPError\": {\n"))
+	lines = append(lines, fmt.Sprintf("    \"type\": \"object\",\n"))
+	lines = append(lines, fmt.Sprintf("    \"properties\": {\n"))
+	lines = append(lines, fmt.Sprintf("        \"message\": \"string\"\n"))
 	lines = append(lines, fmt.Sprintf("    }\n"))
 	lines = append(lines, fmt.Sprintf("},\n"))
 
@@ -453,13 +469,14 @@ func convertTargetType(targetType string) (string, bool) {
 		return "boolean", false
 	}
 	if targetType == "string" ||
+		targetType == "corev1.Capability" ||
 		targetType == "corev1.FinalizerName" ||
+		targetType == "corev1.MountPropagationMode" ||
 		targetType == "corev1.PersistentVolumeAccessMode" ||
 		targetType == "corev1.PersistentVolumeMode" ||
-		targetType == "corev1.UniqueVolumeName" ||
-		targetType == "corev1.Capability" ||
-		targetType == "corev1.MountPropagationMode" ||
+		targetType == "corev1.PreemptionPolicy" ||
 		targetType == "corev1.ProcMountType" ||
+		targetType == "corev1.UniqueVolumeName" ||
 		targetType == "networkingv1.PolicyType" ||
 		targetType == "networkingv1.Protocol" ||
 		targetType == "storagev1.VolumeBindingMode" ||

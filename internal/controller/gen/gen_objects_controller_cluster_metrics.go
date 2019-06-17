@@ -49,8 +49,8 @@ package controller
 import (
 	"net/http"
 
+	"github.com/labstack/echo/v4"
 	"github.com/twuillemin/kuboxy/pkg/provider"
-	"github.com/labstack/echo"
 )
 
 func registerObjectClusterMetricsControllers(e *echo.Echo) {
@@ -70,8 +70,8 @@ func registerObjectClusterMetricsControllers(e *echo.Echo) {
 // @Produce application/json
 // @Param contextName path string true "the name of the context"
 // @Success 200 {array} {{ .Name }}
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/objects/{contextName}/{{ .PluralVariable }} [get]
 func getObject{{ .Plural }}(e echo.Context) error {
 
@@ -95,8 +95,8 @@ func getObject{{ .Plural }}(e echo.Context) error {
 // @Param contextName path string true "the name of the context"
 // @Param name path string true "the name of the object"
 // @Success 200 {object} {{ .Name }}
-// @Failure 404 {object} echo.HTTPError
-// @Failure 500 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
+// @Failure 500 {object} HTTPError
 // @Router /api/v1/objects/{contextName}/{{ .PluralVariable }}/{name} [get]
 func getObject{{ .Name }}(e echo.Context) error {
 

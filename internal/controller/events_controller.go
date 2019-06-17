@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"golang.org/x/net/websocket"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"github.com/twuillemin/kuboxy/pkg/types"
 )
 
@@ -50,7 +50,7 @@ type forwarderInformation struct {
 // @Produce text/plain
 // @Param contextName path string true "the name of the configuration"
 // @Success 200 {string} string
-// @Failure 404 {object} echo.HTTPError
+// @Failure 404 {object} HTTPError
 // @Router /api/v1/events/ [get]
 func getEventsByWebSocket(c echo.Context) (err error) {
 	websocket.Handler(func(ws *websocket.Conn) {

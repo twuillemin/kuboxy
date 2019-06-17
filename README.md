@@ -176,6 +176,13 @@ The documentation also includes the JSON schemas for the various object managed 
 located in the folder `docs/json_schemas`. Although not directly used by the application, the may be used by the client.
 For generating the schemas, run the file `generator.go` located in `tools/json_schema`.
 
+# Versions
+
+ * v0.2.0: 
+    * Fix for configuration file
+    * Add support for Kubernetes 1.14
+ * v0.1.0: First version
+
 
 # License
 
